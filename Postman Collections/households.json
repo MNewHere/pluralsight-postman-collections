@@ -1,0 +1,227 @@
+{
+	"info": {
+		"_postman_id": "e611fb05-2425-42dd-a20f-e565cbb9992c",
+		"name": "Household Wishlist",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Household",
+			"id": "5c6a92a0-4f41-4682-a018-9ab08cfc8a3c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Vermeer Household\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{host}}/households"
+			},
+			"response": [
+				{
+					"id": "9c087a8b-97f8-4460-b0e8-b49de95803f3",
+					"name": "Create Household",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Vermeer Household\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/households"
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "[  {\r\n      \"name\": \"Taylor Household\",\r\n      \"createdAt\": \"2021-06-29T23:24:17.906Z\",\r\n      \"updatedAt\": \"2021-06-29T23:24:17.906Z\",\r\n      \"id\": \"1\",\r\n      \"links\": [\r\n        {\r\n          \"rel\": \"self\",\r\n          \"href\": \"http://localhost:3000/households/1\"\r\n        }\r\n      ]\r\n    }]"
+				}
+			]
+		},
+		{
+			"name": "Create User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a00560a2-0d6f-48a3-8095-6899dc0aa9d3",
+						"exec": [
+							"pm.globals.set(\"firstWishlistId\", pm.response.json().wishlistId);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "d4826c46-92d8-4641-98e7-a2259f11c665",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "G-TOKEN",
+						"value": "ROM831ESV",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"email\": \"Vermeerwerk@gmail.com\",\r\n        \"firstName\": \"Nate\",\r\n        \"lastName\": \"Taylor\",\r\n        \"householdId\": {{householdID}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{host}}/users"
+			},
+			"response": []
+		},
+		{
+			"name": "Create 2nd User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "54532682-87f1-4d9c-9754-82afba3c7927",
+						"exec": [
+							"pm.globals.set(\"secondWishlistId\", pm.response.json().wishlistId);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "629eb30c-65cb-40fc-b462-065d090913bc",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "G-TOKEN",
+						"value": "ROM831ESV",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"email\": \"cookiedough@gmail.com\",\r\n        \"firstName\": \"Kookie\",\r\n        \"lastName\": \"Dough\",\r\n        \"householdId\": {{householdID}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{host}}/users"
+			},
+			"response": []
+		},
+		{
+			"name": "Add Book to User",
+			"id": "e96fa4b3-3719-4e07-baf7-0d55ea029d77",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "G-TOKEN",
+						"value": "ROM831ESV",
+						"type": "text"
+					}
+				],
+				"url": "{{host}}/wishlists/{{firstWishlistId}}/books/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Add Book to 2nd User",
+			"id": "08243968-3225-4f4a-9418-1694c725ea05",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "G-TOKEN",
+						"value": "ROM831ESV",
+						"type": "text"
+					}
+				],
+				"url": "{{host}}/wishlists/eff8/books/2"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Household Books",
+			"id": "2ab1658e-6248-4497-bc38-6148cea2da90",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "G-TOKEN",
+						"value": "ROM831ESV",
+						"type": "text"
+					}
+				],
+				"url": "{{host}}/households/30fc/wishlistBooks"
+			},
+			"response": []
+		}
+	]
+}
